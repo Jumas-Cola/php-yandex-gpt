@@ -79,6 +79,12 @@ class Completion extends Task
      */
     private int $textMaxCount = Limit::TEXT_MAX_COUNT;
 
+    /**
+     * The maximum length of the text in a single message.
+     * @var int
+     */
+    private int $textLength = Limit::TEXT_LENGTH;
+
     private $url = Url::COMPLETION;
 
     public function __construct()
@@ -97,7 +103,7 @@ class Completion extends Task
             throw new ClientException(Message::LENGTH_ERROR);
 
         foreach ($textsData as $text) {
-            if (mb_strlen($text['text']) > Limit::TEXT_LENGTH)
+            if (mb_strlen($text['text']) > $this->textLength)
                 throw new ClientException(Message::LENGTH_ERROR);
 
             $this->task[self::MESSAGES][] = [
@@ -170,6 +176,18 @@ class Completion extends Task
     public function setTextMaxCount(int $textMaxCount): Completion
     {
         $this->textMaxCount = $textMaxCount;
+        return $this;
+    }
+
+    /**
+     * Sets the maximum length of the text in a single message.
+     *
+     * @param int $textLength
+     * @return Completion
+     */
+    public function setTextLength(int $textLength): Completion
+    {
+        $this->textLength = $textLength;
         return $this;
     }
 
