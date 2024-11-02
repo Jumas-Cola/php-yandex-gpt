@@ -73,6 +73,12 @@ class Completion extends Task
      */
     const USER = 'user';
 
+    /**
+     * The maximum number of messages that can be sent in a single request.
+     * @var int
+     */
+    private int $textMaxCount = Limit::TEXT_MAX_COUNT;
+
     private $url = Url::COMPLETION;
 
     public function __construct()
@@ -87,7 +93,7 @@ class Completion extends Task
      */
     public function addText(array $textsData): self
     {
-        if (count($textsData) > Limit::TEXT_MAX_COUNT)
+        if (count($textsData) > $this->textMaxCount)
             throw new ClientException(Message::LENGTH_ERROR);
 
         foreach ($textsData as $text) {
@@ -153,6 +159,18 @@ class Completion extends Task
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    /**
+     * Sets the maximum number of messages that can be sent in a single request.
+     *
+     * @param int $textMaxCount
+     * @return Completion
+     */
+    public function setTextMaxCount(int $textMaxCount): Completion
+    {
+        $this->textMaxCount = $textMaxCount;
+        return $this;
     }
 
     /**

@@ -1,11 +1,11 @@
 {
-    "name": "teariot/php-yandex-gpt",
+    "name": "jumas-cola/php-yandex-gpt",
     "description": "A PHP library for seamless interaction with Yandex GPT (Generative Pre-trained Transformer) API, providing text generation, tokenization, and embedding functionalities.",
     "keywords": [
         "Yandex GPT",
         "yandex"
     ],
-    "homepage": "https://github.com/TeaRiot/php-yandex-gpt",
+    "homepage": "https://github.com/jumas-cola/php-yandex-gpt",
     "license": "MIT",
     "authors": [
         {
